@@ -1,13 +1,3 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>WebCampBackendNew</title>
-    <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="crk4M7ZDcH6IK7EQ4wP/8+34cV5H2uDOHfw8POFAGRNpbtuBrfNMTA7lK83lodnDVj+vyDHI56KcJMkP7qpnFw==" />
-
-    <link rel="stylesheet" media="all" href="/assets/application-d12397cbc3a266ce5a99f7b588223090c55ca04a439953bb5f9304395de93fc3.css" data-turbolinks-track="reload" />
-    <script src="/assets/application-114264dd93c8ff30e4335b71eed7949d66c4e7a8eb62e2de6284c046fe07104b.js" data-turbolinks-track="reload"></script>
-  </head>
 
   <body>
     <p id="notice"></p>
@@ -24,55 +14,15 @@
   </thead>
 
   <tbody>
+    <% @books.each do |book| %>
       <tr>
-        <td>リーダブルコード</td>
-        <td>より良いコードを書くためのシンプルで実践的なテクニック</td>
-        <td><a class="show_69728" href="/books/69728">Show</a></td>
-        <td><a class="edit_69728" href="/books/69728/edit">Edit</a></td>
-        <td><a data-confirm="Are you sure?" class="destroy_69728" rel="nofollow" data-method="delete" href="/books/69728">Destroy</a></td>
+        <td><%= book.title %></td>
+        <td><%= book.body %></td>
+        <td><%= link_to 'show', book_path(book.id) %></td>
+        <td><%= link_to 'Edit', edit_book_path(book) %></td>
+        <td><%= link_to 'Destroy', book, 'date-confirm' => 'Are you sure' %></td>
       </tr>
-      <tr>
-        <td>トラブル知らずのシステム設計</td>
-        <td>システム設計の要点を図解で説明してくれます</td>
-        <td><a class="show_69729" href="/books/69729">Show</a></td>
-        <td><a class="edit_69729" href="/books/69729/edit">Edit</a></td>
-        <td><a data-confirm="Are you sure?" class="destroy_69729" rel="nofollow" data-method="delete" href="/books/69729">Destroy</a></td>
-      </tr>
-      <tr>
-        <td>たのしいRuby</td>
-        <td>Rubyの入門におすすめです</td>
-        <td><a class="show_69730" href="/books/69730">Show</a></td>
-        <td><a class="edit_69730" href="/books/69730/edit">Edit</a></td>
-        <td><a data-confirm="Are you sure?" class="destroy_69730" rel="nofollow" data-method="delete" href="/books/69730">Destroy</a></td>
-      </tr>
-      <tr>
-        <td>入門Git</td>
-        <td>gitについての基本操作から内部構造まで解説してくれます</td>
-        <td><a class="show_69731" href="/books/69731">Show</a></td>
-        <td><a class="edit_69731" href="/books/69731/edit">Edit</a></td>
-        <td><a data-confirm="Are you sure?" class="destroy_69731" rel="nofollow" data-method="delete" href="/books/69731">Destroy</a></td>
-      </tr>
-      <tr>
-        <td>アルゴリズム図鑑</td>
-        <td>アルゴリズムについてカラーイラストでしっかり解説してくれます</td>
-        <td><a class="show_69732" href="/books/69732">Show</a></td>
-        <td><a class="edit_69732" href="/books/69732/edit">Edit</a></td>
-        <td><a data-confirm="Are you sure?" class="destroy_69732" rel="nofollow" data-method="delete" href="/books/69732">Destroy</a></td>
-      </tr>
-      <tr>
-        <td>達人プログラマー</td>
-        <td>プログラマ入門者は必読！</td>
-        <td><a class="show_69733" href="/books/69733">Show</a></td>
-        <td><a class="edit_69733" href="/books/69733/edit">Edit</a></td>
-        <td><a data-confirm="Are you sure?" class="destroy_69733" rel="nofollow" data-method="delete" href="/books/69733">Destroy</a></td>
-      </tr>
-      <tr>
-        <td>データベース実践入門</td>
-        <td>効率的なSQL文を教えてくれます</td>
-        <td><a class="show_69734" href="/books/69734">Show</a></td>
-        <td><a class="edit_69734" href="/books/69734/edit">Edit</a></td>
-        <td><a data-confirm="Are you sure?" class="destroy_69734" rel="nofollow" data-method="delete" href="/books/69734">Destroy</a></td>
-      </tr>
+    <% end %>
   </tbody>
 </table>
 
@@ -80,7 +30,7 @@
 <form class="new_book" id="new_book" action="/books" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="QBQI0wEJm5OhubSlDnS8tjzUXsYtDBXKjWafjDSBl5dKh3LIzJ1JvYKp7x9ca3Kzb8w1uwRxu5LLEFTgCCx27Q==" />
 
   <div class="field">
-  <%= form_with model: @book,url: '/books' method: :post do |f| %>
+  <%= form_with model: @book, url: 'books', method: :post do |f| %>
     <label for="book_title">Title</label>
     <%= f.text_field :title %>
   </div>
