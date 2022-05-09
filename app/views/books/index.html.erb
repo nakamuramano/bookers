@@ -1,6 +1,12 @@
 
 <body>
-  <p></p>
+
+<% if flash[:notice] %>
+  <p id="notice">
+    <%= flash[:notice] %>
+  </p>
+<% end %>
+
 
 <h1>Books</h1>
 
@@ -29,7 +35,7 @@
 <h2>New book</h2>
 
 <% if @book.errors.any? %>
-  <%= @book.errors.count %>errors prohibited this book from being saved:
+  <h2><%= @book.errors.count %>errors prohibited this book from being saved:</h2>
   <ul>
     <% @book.errors.full_messages.each do |message| %>
       <li><%= message %></li>
@@ -40,13 +46,13 @@
   <%= form_with model: @book, url: '/books', method: :post do |f| %>
   <div class="box">
     <label for="book_title">Title</label>
-  </div>
     <%= f.text_field :title %>
+  </div>
 
   <div class="box">
     <label for="book_body">Body</label>
-  </div>
     <%= f.text_area :body %>
+  </div>
 
   <div class="box">
     <%= f.submit 'Create Book' %>
